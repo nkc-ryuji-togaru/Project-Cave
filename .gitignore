@@ -1,0 +1,20 @@
+# フォルダの特定
+Private/
+Library/
+.vs/
+
+# 実行ファイルの書き出し先フォルダ
+*output_log.txt
+
+# tagやInputの編集データ
+ProjectSettings/
+
+# 
+*Temp
+
+#-------------------------
+# Visual Studio関連
+#-------------------------
+*.csproj
+*.sln
+*.suo
