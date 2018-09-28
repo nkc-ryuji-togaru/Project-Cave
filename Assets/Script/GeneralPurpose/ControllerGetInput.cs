@@ -13,31 +13,37 @@ using System.Collections;
 public class ControllerGetInput : MonoBehaviour {
 
 	string GamepadF310 = "Controller (Gamepad F310)";
-	string PS4 = "Wireless Controller";
+	string PS4_1 = "Wireless Controller";
+    string PS4_2 = "Sony Interactive Entertainment Wireless Controller";
+    string ps4_3 = "SZ-MYPOWER DS4 Wired Controller";
 	string Logicool = "Logicool Dual Action";
     string joyPad;
 
 	// ボタンの判定
-	bool circle, triangle, square, cross, l1, l2, l3, r1, r2, r3, option;
+    static bool circle, triangle, square, cross, l1, l2, l3, r1, r2, r3, option;
 
 	// ボタンの名前
-	string CIRCLE, TRIANGLE, SQUARE, CROSS, L1, L2, L3, R1, R2, R3, OPTION, HORIZONTAL_L, HORIZONTAL_R, VERTICAL_L, VERTICAL_R;
+    static string CIRCLE, TRIANGLE, SQUARE, CROSS, L1, L2, L3, R1, R2, R3, OPTION, HORIZONTAL_L, HORIZONTAL_R, VERTICAL_L, VERTICAL_R;
 
+    // 
+    static bool init = false;
 	//================================================================================================================================
 	// コンストラクタ
 	// コントローラーの種類に応じて変更
 	//================================================================================================================================
 	public ControllerGetInput() {
-		var joystick = Input.GetJoystickNames();
+        if(init) return;
+        var joystick = Input.GetJoystickNames();
 		foreach (string joyname in joystick) {
 			if(joyname.Length > 0) {
 				joyPad = joyname;
 				break;
 			}
 		}
+        //Debug.Log(joyPad);
 		//-------------------------------------
 		// PS4コントローラー
-		if (joyPad == PS4) {
+        if (joyPad == PS4_1 || joyPad == PS4_2 || joyPad == ps4_3) {
 			CIRCLE = "Circle";
 			TRIANGLE = "Triangle";
 			SQUARE = "Square";
@@ -73,6 +79,23 @@ public class ControllerGetInput : MonoBehaviour {
 			VERTICAL_L = "Vertical_L_F310";
 			VERTICAL_R = "Vertical_R_F310";
 		}
+        else{
+            CIRCLE = "Circle";
+            TRIANGLE = "Triangle";
+            SQUARE = "Square";
+            CROSS = "Cross";
+            L1 = "Fire_L1";
+            L2 = "Fire_L2";
+            L3 = "Fire_L3";
+            R1 = "Fire_R1";
+            R2 = "Fire_R2";
+            R3 = "Fire_R3";
+            OPTION = "Option";
+            HORIZONTAL_L = "Horizontal_L";
+            HORIZONTAL_R = "Horizontal_R";
+            VERTICAL_L = "Vertical_L";
+            VERTICAL_R = "Vertical_R";
+        }
 
 		circle = false;
 		triangle = false;
@@ -85,6 +108,8 @@ public class ControllerGetInput : MonoBehaviour {
 		r2 = false;
 		r3 = false;
 		option = false;
+
+        init = true;
 	}
 	//=====================================================================================================================
 	/// <summary>
